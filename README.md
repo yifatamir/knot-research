@@ -1,16 +1,16 @@
 # knot-research
 
-Requirements:
+###Requirements:
 
-	[numpy](www.numpy.org)
+[numpy](www.numpy.org)
 
-	[PyOpenGL](http://pyopengl.sourceforge.net/)
+[PyOpenGL](http://pyopengl.sourceforge.net/)
 
-Installation:
+###Installation:
 
-	1. Install numpy
-	```pip install numpy```
-	2. Install PyOpenGL
-	```pip install PyOpenGL PyOpenGL_accelerate```
+1. Install numpy
+```pip install numpy```
+2. Install PyOpenGL
+```pip install PyOpenGL PyOpenGL_accelerate```
 
 Run using `python main.py`
