@@ -3,7 +3,6 @@
 ###Requirements:
 
 [numpy](www.numpy.org)
-
 [PyOpenGL](http://pyopengl.sourceforge.net/)
 
 ###Installation:
@@ -13,4 +12,4 @@
 2. Install PyOpenGL
 ```pip install PyOpenGL PyOpenGL_accelerate```
 
-Run using `python main.py`
+Run using `python templateMain.py`
