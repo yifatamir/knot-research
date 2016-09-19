@@ -19,7 +19,18 @@ TODO: figure out what to put in this list to make
 the edges draw properly
 '''
 edges = [
-
+[0,4],
+[1,5],
+[2,6],
+[3,7],
+[0,1],
+[1,2],
+[2,3],
+[1,4],
+[4,5],
+[5,6],
+[6,7],
+[7,4]
 ]
 
 
@@ -124,7 +135,7 @@ def main():
 	glutInitDisplayMode(GLUT_DOUBLE)
 	glutInitWindowSize(640, 480)
 	glutInitWindowPosition(0, 0)
-	glutCreateWindow("Circle")
+	glutCreateWindow("Cubes??")
 	glutDisplayFunc(mainDisplay)
 	glutReshapeFunc(mainReshape)
 	glutMotionFunc(drag)
