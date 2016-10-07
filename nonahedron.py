@@ -69,3 +69,10 @@ class Nonahedron:
 		for listofedges in alledgelists:
 			alledges += listofedges
 		return list(set(alledges))
+
+	def rebuild(self):
+		self.points = self.buildPoints()
+		self.quads = self.buildQuads()
+		self.topPentas = self.buildTopPentas()
+		self.bottomPentas = self.buildBottomPentas()
+		self.edges = self.getAllEdges()

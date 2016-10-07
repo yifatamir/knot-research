@@ -6,6 +6,7 @@ import math
 import transform
 import numpy as np
 import nonahedron as nona
+import costfunction as c
 
 eye = np.array([0.0,-13.0,1.5])
 up = np.array([0.0,0.0,1.0])
@@ -19,7 +20,18 @@ radius_corner = 0.985
 height_corner = 0.707
 top_z = 0.877
 
+x_step = 0.01
+radius_step = 0.01
+height_step = 0.01
+z_step = 0.01
+
+alpha = 1000000
+beta = 0.0001
+gamma = 1
+
 non = nona.Nonahedron(x_edge, radius_corner, height_corner, top_z)
+cost = c.cost_function(non, alpha, beta, gamma)
+past_cost = 0
 
 def init():
 	glClearColor(0.0, 0.0, 0.0, 1.0); # Set background color to black and opaque
@@ -53,7 +65,12 @@ def mainDisplay():
 	glEnd()
 
 	#Draw Geometry
-	global non
+	global non, cost, past_cost
+	non.rebuild()
+	cost = c.cost_function(non, alpha, beta, gamma)
+	if (cost != past_cost):
+		print(cost)
+		past_cost = cost
 
 	glBegin(GL_LINES)
 	#color the for lines you're about to draw
@@ -93,16 +110,27 @@ def drag(x,y):
 	glutPostRedisplay()
 
 def keyboard(key,x,y):
-	# global geom
-	# if key == 27:
-	# 	exit(0)
-	# elif key == "+":
-	# 	# move first cube over in positive x
-	# 	geom.extraTranslation += 0.2
-	# elif key == "-":
-	# 	# move first cube over in negative x
-	# 	geom.extraTranslation -= 0.2
-	
+	global non, x_step, z_step, radius_step, height_step
+	if key == 27:
+		exit(0)
+	elif key == "x":
+		non.ex += x_step
+		print(non.ex)
+	elif key == "d":
+		non.ex -= x_step
+	elif key == "z":
+		non.tz += z_step
+	elif key == "s":
+		non.tz -= z_step
+	elif key == "r":
+		non.rc += radius_step
+	elif key == "5":
+		non.rc -= radius_step
+	elif key == "h":
+		non.hc += height_step
+	elif key == "u":
+		non.hc -= height_step
+
 	glutPostRedisplay()
 
 
@@ -123,7 +151,7 @@ def main():
 	glutReshapeFunc(mainReshape)
 	glutMotionFunc(drag)
 	glutMouseFunc(mouse)
-	# glutKeyboardFunc(keyboard)
+	glutKeyboardFunc(keyboard)
 	init()
 	glutMainLoop()
 	return
