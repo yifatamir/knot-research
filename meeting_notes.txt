@@ -1,0 +1,31 @@
+~~~~~~~10_07_2016~~~~~~~~~
+
+-change angles and comparison to cosines (not degrees)
+-add sliders for step size
+-have the program calculate the step size automatically based on how much the cost function value changed (proportionally)
+
+
+
+~~~~~~~10/14/2016~~~~~~~~~
+REPEAT:
+	-find sensitivity of each of the 4 parameters
+		-change by small delta and see how much cost changes
+		-if it only changes in the 5th digit then the step is too small
+		-if it changes in the 3rd digit then the step is good
+		-if it changes in the 1st digit then the step is too big
+		-want to be 10 or 100 times the rounding zone of the cost
+		-want to be small enough to be almost linear change
+	-take a step in the right direction (decrease cost) for the variable with the biggest sensitivity
+	-when you see a dramatic change in sensitivity then you decrease the step size
+	(?) -update values of all four parameters
+
+-high level control to 1) make a step and 2)increase the step size and 3)decrease the step size while function runs
+
+
+
+~~~~~~~10/21/2016~~~~~~~~~
+eld: 0.0153008098131     pad: 11.8579266289     fnp: 0.110718970583
+-make gradient descent stop once cost can only be increased!!
+-a topologist can't tell the difference between a donut and a coffee mug
+-end condition!! (just added "end" variable--- haven't tested its integration <-- do that!!)
+-think about constraints and parameters for putting these hedrons in a 5, 6 7 piece ring
