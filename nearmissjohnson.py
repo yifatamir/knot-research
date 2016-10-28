@@ -30,8 +30,6 @@ alpha = 1
 beta = 1
 gamma = 1
 
-end = False
-
 non = nona.Nonahedron(x_edge, radius_corner, height_corner, top_z)
 cost, eld, pad, fnp = c.cost_function(non, alpha, beta, gamma)
 lowest_cost = cost
@@ -94,11 +92,10 @@ def gradient_descent():
 			non.tz -= global_step
 	non.rebuild()
 	cost, eld, pad, fnp = c.cost_function(non, alpha, beta, gamma)
-	if (abs(cost - base_cost) < 0.0001 || end):
+	if (abs(cost - base_cost) < 0.0001):
 		if (cost - lowest_cost > 0):
 			print("STOP GRADIENT DESCENT!!!!")
 			global_step = float(global_step) / 2
-			end = True
 		else:
 			global_step = global_step * 2
 	if (abs(cost - base_cost) > 0.1):
