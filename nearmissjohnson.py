@@ -7,6 +7,7 @@ import transform
 import numpy as np
 import nonahedron as nona
 import costfunction as c
+import time
 
 eye = np.array([0.0,-13.0,1.5])
 up = np.array([0.0,0.0,1.0])
@@ -25,12 +26,15 @@ height_step = 0.01
 z_step = 0.01
 
 global_step = 0.01
+global_step_threshold = 0.000001
 
 alpha = 1
 beta = 1
-gamma = 1
+gamma = 100000
 
 end = False
+
+delay = 0.1
 
 non = nona.Nonahedron(x_edge, radius_corner, height_corner, top_z)
 cost, eld, pad, fnp = c.cost_function(non, alpha, beta, gamma)
@@ -49,7 +53,9 @@ colors = (
 	)
 
 def gradient_descent():
-	global non, cost, global_step
+	global non, cost, global_step, end, global_step_threshold, lowest_cost
+	# if (global_step < global_step_threshold):
+	# 	return
 	base_cost = cost
 	non.ex += global_step
 	non.rebuild()
@@ -94,15 +100,15 @@ def gradient_descent():
 			non.tz -= global_step
 	non.rebuild()
 	cost, eld, pad, fnp = c.cost_function(non, alpha, beta, gamma)
-	if (abs(cost - base_cost) < 0.0001 || end):
+	if (abs(cost - base_cost) < 0.0001 or end):
 		if (cost - lowest_cost > 0):
-			print("STOP GRADIENT DESCENT!!!!")
 			global_step = float(global_step) / 2
 			end = True
 		else:
 			global_step = global_step * 2
 	if (abs(cost - base_cost) > 0.1):
 		global_step = float(global_step) / 2
+	lowest_cost = min(lowest_cost, cost)
 
 def init():
 	glClearColor(0.0, 0.0, 0.0, 1.0) # Set background color to black and opaque
@@ -197,7 +203,7 @@ def drag(x,y):
 	glutPostRedisplay()
 
 def keyboard(key,x,y):
-	global non, x_step, z_step, radius_step, height_step, global_step
+	global non, x_step, z_step, radius_step, height_step, global_step, global_step_threshold, delay
 	if key == 27:
 		exit(0)
 	elif key == "x":
@@ -224,6 +230,17 @@ def keyboard(key,x,y):
 		global_step = float(global_step) / 2
 	elif key == "2":
 		global_step = global_step * 2
+	elif key == "g":
+		print("~~performing gradient descent~~")
+		print("initial values: ")
+		printValues()
+		while (global_step > global_step_threshold):
+			gradient_descent()
+			glutPostRedisplay()
+			time.sleep(delay)
+		print("final values: ")
+		printValues()
+
 	glutPostRedisplay()
 
 def printValues():
