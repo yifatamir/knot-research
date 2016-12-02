@@ -29,3 +29,78 @@ eld: 0.0153008098131     pad: 11.8579266289     fnp: 0.110718970583
 -a topologist can't tell the difference between a donut and a coffee mug
 -end condition!! (just added "end" variable--- haven't tested its integration <-- do that!!)
 -think about constraints and parameters for putting these hedrons in a 5, 6 7 piece ring
+
+
+
+~~~~~~~10/28/2016~~~~~~~~~
+my results: 		ex: 1.045 		rc: 0.895 		hc: 0.642 		tz: 1.012
+-make blog!!!
+-six ring:
+	-quads need to be planar (pentagons don't)
+	-60*
+	-natural because threefold symmetry
+-five ring:
+	-quads planar
+	-72*
+	-no threefold symmetry
+	-parameters: length of diagonal of quad, height of the shoulder above the quad face, sliders of third quad in and out, tz, radial tz
+-seven ring:
+	-same parametrization as five ring 
+-rotation around the z axis in increments of however many degrees (72, etc)
+-change points to take in new parameters
+
+
+
+~~~~~~~11/4/2016~~~~~~~~~
+-make blog!!
+-make sliders to play with alpha beta and gamma and then see the shape change to the new optimal
+-eight ring:
+	-square faces face inwards; planar
+	-pentagonal faces stick out radially
+	-connect via pentagons
+	-need to tilt each module 45* (arbitrary axis) so that the quads are not diamonds
+	-45 degrees rotation around z axis
+	-still has c2 symmetry from middle of inner quad to midpoint of opposing line
+	-or create from scratch using figure 5a
+-genus: # of holes (number of circles you can draw on the surface without splitting it into 2 isolated areas)
+	-these rings we've done have genus 1
+	-snip until you have a tree structure (next snip breaks it apart)
+	-for a sphere with holes, the genus is the number of holes - 1
+	-for the white tube figure of the nonahedron, genus = 8
+	-if genus > 1, need junctions!!
+-for next time:
+	-make an object usuing the nonahedrons that has genus 2
+	-all modules the same
+	-start with full planarity (quads and pentagons)
+	-maintain d3 fold symmetry (per module and for the entire figure)
+	-nice object vs minimal number of modules
+	-new: some modules will have more than 2 neighbors
+	-y junction by attaching three modules to the three quads or to the three pentas on the same hemisphere
+	-infinity figure; infinity with a twist; or two y junctions connected to make ~sphere with 3 holes
+	-could do from scratch without the modules (like figure 5a)
+-toroidal (?)
+-pareto frontier
+-email if you're stuck
+-have 2 weeks
+
+
+
+
+~~~~~~~11/21/2016~~~~~~~~~
+-8-ring
+	parameters: two degrees of freedom for the two far corners of yellow pentas and two for the farthest one as well
+		one degree of freedom for the backest point of the module 
+			maintain the back edge with the front squares diagonal
+
+		can constrain quares to planar and square
+
+		if constrained to all planar no degrees of freedom
+
+prioritize 5 and 7 ring
+
+
+maya
+solidworks
+rhinoceros with grasshopper front end
+google sketchup (potentially too simple?)
+slide(???)
