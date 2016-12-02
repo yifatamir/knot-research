@@ -1,3 +1,5 @@
+import math
+
 class Nonahedron:
 
 	def __init__(self, ex, rc, hc, tz):
