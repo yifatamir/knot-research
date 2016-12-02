@@ -1,4 +1,6 @@
 # knot-research
+Geometrical optimization under Professor Carlo Sequin
+
 
 ###Requirements:
 
@@ -14,3 +16,4 @@
 ```pip install PyOpenGL PyOpenGL_accelerate```
 
 Run using `python templateMain.py`
+
