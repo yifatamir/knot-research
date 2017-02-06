@@ -1,6 +1,7 @@
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from OpenGL.GL import *
+from OpenGL.GLE import *
 import sys
 import math
 import transform
@@ -16,7 +17,15 @@ prevY = 0
 r = 0
 
 points = [(2.0, -0.40, 0.80), (-1.3464, 1.532, -0.80), (-1.3464, -1.532, 0.80), (2.0, 0.40, -0.80), (-0.6536,  1.932, 0.80), (-0.6536,  -1.932, -0.80)]
+circlePoints = points
+degree = 3
+for i in range(degree - 1):
+	circlePoints += [circlePoints[i]]
+knotNum = len(circlePoints) + degree
+circleKnots =  [float(i)/(knotNum-1) for i in range( knotNum )]
 
+samplingTolerance=1.0
+nurb = None
 global_step = 0.01
 global_step_threshold = 0.00001
 delay = 0.1
@@ -91,7 +100,27 @@ def mainDisplay():
 			glVertex3fv(v)
 	glEnd()
 
+	# glePolyCone(((-6.0, 6.0, 0.0), (6.0, 6.0, 0.0), (6.0, -6.0, 0.0), (-6.0, -6.0, 0.0), (-6.0, 6.0, 0.0), (6.0, 6.0, 0.0)),
+				# ((0.0, 0.0, 0.0), (0.0, 0.8, 0.3), (0.8, 0.3, 0.0), (0.2, 0.3, 0.9), (0.2, 0.8, 0.5), (0.0, 0.0, 0.0)), (0.1, 0.1, 0.1, 0.1, 0.2, 0.1))
+	draw_bspline()
+
 	glutSwapBuffers()
+
+def draw_bspline():
+	global nurb, samplingTolerance, circlePoints, circleKnots
+	nurb = gluNewNurbsRenderer()
+	glLineWidth(2.0)
+	gluNurbsProperty(nurb, GLU_SAMPLING_TOLERANCE, samplingTolerance)
+	glColor3f(0, 1, 1)
+	glBegin(GL_LINE_STRIP)
+	for coord in circlePoints:
+		glVertex3f(coord[0], coord[1], coord[2]);
+	glEnd()
+	glColor3f(1, 1, 1)
+	gluBeginCurve( nurb )
+	gluNurbsCurve	(	nurb, circleKnots, circlePoints, GL_MAP1_VERTEX_3 )
+	gluEndCurve( nurb )
+	glutSwapBuffers( )
 
 def mainReshape(w,h):
 	if h == 0:
