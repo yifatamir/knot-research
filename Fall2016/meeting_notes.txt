@@ -84,8 +84,6 @@ my results: 		ex: 1.045 		rc: 0.895 		hc: 0.642 		tz: 1.012
 -have 2 weeks
 
 
-
-
 ~~~~~~~11/21/2016~~~~~~~~~
 -8-ring
 	parameters: two degrees of freedom for the two far corners of yellow pentas and two for the farthest one as well
@@ -104,3 +102,22 @@ solidworks
 rhinoceros with grasshopper front end
 google sketchup (potentially too simple?)
 slide(???)
+
+
+~~~~~~~12/2/2016~~~~~~~~~
+-in 5ring and 7ring:
+	maybe different penalty for inner pent planarity and outer pents planarities
+	get gradient descent to work
+
+-knots!!!
+-polyline with 16 modules, 30* each, two components of cost function: L unity length apart, angle at each point diff from 150*
+	-put 16 dots on circle and then randomly move points
+	-gradient descent
+	-rather than dealing with the angle, maybe just look at the cosine
+	-3n parameters
+	-get sensitivty of x, y, z
+	-small step
+	-sum of squares of deviations from unit length and sum of squares of deviations from 150*
+
+
+

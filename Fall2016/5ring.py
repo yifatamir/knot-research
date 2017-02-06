@@ -35,7 +35,7 @@ global_step = 0.01
 global_step_threshold = 0.000001
 delay = 0.002
 
-alpha = 1
+alpha = 1000
 beta = 1
 gamma = 1
 
@@ -62,7 +62,7 @@ colors = (
 	)
 
 def gradient_descent():
-	global nons, non_one, cost, global_step, global_step_threshold, lowest_cost
+	global nons, non_one, cost, global_step, global_step_threshold, lowest_cost, hd, hc, tz, tr, fx
 	# if (global_step < global_step_threshold):
 	# 	return
 	base_cost = cost
@@ -97,37 +97,47 @@ def gradient_descent():
 		if (delta_fx < 0):
 			for nona in nons:
 				nona.fx += global_step
+				fx += global_step
 		else:
 			for nona in nons:
 				nona.fx -= global_step
+				fx -= global_step
 	elif highest_sensitivity == abs(delta_hc):
 		if (delta_hc < 0):
 			for nona in nons:
 				nona.hc += global_step
+				hc += global_step
 		else:
 			for nona in nons:
 				nona.hc -= global_step
+				hc -= global_step
 	elif highest_sensitivity == abs(delta_hd):
 		if (delta_hd < 0):
 			for nona in nons:
 				nona.hd += global_step
+				hd += global_step
 		else:
 			for nona in nons:
 				nona.hd -= global_step
+				hd -= global_step
 	elif highest_sensitivity == abs(delta_tz):
 		if (delta_tz < 0):
 			for nona in nons:
 				nona.tz += global_step
+				tz += global_step
 		else:
 			for nona in nons:
 				nona.tz -= global_step
+				tz -= global_step
 	else:
 		if (delta_tr < 0):
 			for nona in nons:
 				nona.tr += global_step
+				tr += global_step
 		else:
 			for nona in nons:
 				nona.tr += global_step
+				tr += global_step
 	for nona in nons:
 				nona.rebuild()
 	cost, eld, pad, fnp = c.cost_function(non, alpha, beta, gamma)

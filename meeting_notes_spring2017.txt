@@ -1,0 +1,9 @@
+~~~~~~~1/30/2017~~~~~~~~~
+-cubic b-spline for a polyline uses four points to compute the curve between the points.
+-cost function: 3 parts
+	1. deviation from unit length
+	2. deviation from 30*
+	3. deviation from blue trefoil polyline
+-trefoil knot, 8 figure knot
+-make b-spline
+-sliders (use symmetry to minimize number of sliders)
